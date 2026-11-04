@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration Portal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Background Animated Orbs -->
+    <div class="bg-blob blob-1"></div>
+    <div class="bg-blob blob-2"></div>
+
+    <div class="form-container">
+        <h2>Student Registration</h2>
+        <p class="subtitle">Enter your details to register in the portal</p>
+        
+        <form id="registrationForm">
+            <div class="input-group">
+                <input type="text" id="full_name" required placeholder=" ">
+                <label>Full Name</label>
+                <span class="highlight"></span>
+            </div>
+
+            <div class="input-group">
+                <input type="date" id="dob" required>
+                <label class="active-label">Date of Birth</label>
+                <span class="highlight"></span>
+            </div>
+
+            <div class="input-group">
+                <input type="tel" id="mobile" required placeholder=" ">
+                <label>Mobile Number</label>
+                <span class="highlight"></span>
+            </div>
+
+            <div class="input-group">
+                <input type="text" id="city" required placeholder=" ">
+                <label>City</label>
+                <span class="highlight"></span>
+            </div>
+
+            <div class="input-group">
+                <input type="text" id="father_name" required placeholder=" ">
+                <label>Father's Name</label>
+                <span class="highlight"></span>
+            </div>
+
+            <div class="input-group">
+                <input type="text" id="mother_name" required placeholder=" ">
+                <label>Mother's Name</label>
+                <span class="highlight"></span>
+            </div>
+
+            <div class="radio-group">
+                <span class="radio-title">Gender:</span>
+                <label class="radio-label">
+                    <input type="radio" name="gender" value="Male" required> 
+                    <span class="radio-custom"></span> Male
+                </label>
+                <label class="radio-label">
+                    <input type="radio" name="gender" value="Female"> 
+                    <span class="radio-custom"></span> Female
+                </label>
+                <label class="radio-label">
+                    <input type="radio" name="gender" value="Other"> 
+                    <span class="radio-custom"></span> Other
+                </label>
+            </div>
+
+            <button type="submit" id="submitBtn">
+                <span>Register Student</span>
+                <div class="btn-glow"></div>
+            </button>
+        </form>
+        <p id="responseMessage"></p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,281 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: #0f172a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    position: relative;
+    padding: 20px;
+}
+
+/* Background Animated Gradient Orbs */
+.bg-blob {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+    filter: blur(80px);
+    border-radius: 50%;
+    z-index: 0;
+    animation: floatBlob 10s ease-in-out infinite alternate;
+    opacity: 0.5;
+}
+
+.blob-1 {
+    top: -100px;
+    left: -100px;
+}
+
+.blob-2 {
+    bottom: -100px;
+    right: -100px;
+    animation-delay: -5s;
+}
+
+@keyframes floatBlob {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(50px, 50px) scale(1.1); }
+}
+
+/* Main Form Card with Glassmorphism and Side Border Animations */
+.form-container {
+    position: relative;
+    z-index: 1;
+    background: rgba(30, 41, 59, 0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 40px;
+    border-radius: 24px;
+    width: 100%;
+    max-width: 480px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    overflow: hidden;
+}
+
+/* Left and Right Side Border Animation Light Trails */
+.form-container::before,
+.form-container::after {
+    content: '';
+    position: absolute;
+    width: 3px;
+    height: 100px;
+    background: linear-gradient(to bottom, transparent, #6366f1, #a855f7, transparent);
+    animation: sideBeam 4s ease-in-out infinite;
+    z-index: 2;
+}
+
+.form-container::before {
+    top: -100px;
+    left: 0;
+    animation-delay: 0s;
+}
+
+.form-container::after {
+    bottom: -100px;
+    right: 0;
+    animation-delay: 2s;
+}
+
+@keyframes sideBeam {
+    0% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(500%);
+        opacity: 0;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+h2 {
+    color: #f8fafc;
+    font-size: 26px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+}
+
+.subtitle {
+    color: #94a3b8;
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Floating Input Group Styles */
+.input-group {
+    position: relative;
+    margin-bottom: 22px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 14px 16px;
+    background: rgba(15, 23, 42, 0.6);
+    border: 1.5px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: #f8fafc;
+    font-size: 15px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.input-group input:focus,
+.input-group input:not(:placeholder-shown) {
+    border-color: #6366f1;
+    background: rgba(15, 23, 42, 0.8);
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
+}
+
+.input-group label {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #94a3b8;
+    font-size: 14px;
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: transparent;
+}
+
+.input-group input:focus ~ label,
+.input-group input:not(:placeholder-shown) ~ label {
+    top: 0;
+    font-size: 11px;
+    color: #818cf8;
+    padding: 0 6px;
+    background: #1e293b;
+    border-radius: 4px;
+}
+
+/* Fix for date input label */
+.input-group input[type="date"] ~ .active-label,
+.input-group input[type="date"]:focus ~ label {
+    top: 0;
+    font-size: 11px;
+    color: #818cf8;
+    padding: 0 6px;
+    background: #1e293b;
+    border-radius: 4px;
+}
+
+/* Radio Group Styles */
+.radio-group {
+    margin: 20px 0 25px 0;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.radio-title {
+    color: #94a3b8;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.radio-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #e2e8f0;
+    font-size: 14px;
+    cursor: pointer;
+    position: relative;
+}
+
+.radio-label input {
+    accent-color: #6366f1;
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+}
+
+/* Advanced Animated Button */
+button {
+    position: relative;
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+}
+
+button span {
+    position: relative;
+    z-index: 2;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(99, 102, 241, 0.6);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+.btn-glow {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+button:hover .btn-glow {
+    opacity: 1;
+    animation: rotateGlow 3s linear infinite;
+}
+
+@keyframes rotateGlow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Response Message Animation */
+#responseMessage {
+    text-align: center;
+    margin-top: 18px;
+    font-size: 14px;
+    font-weight: 500;
+    min-height: 20px;
+    transition: all 0.3s ease;
+}
