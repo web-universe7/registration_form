@@ -5,14 +5,14 @@ require('dotenv').config();
 
 const app = express();
 
-// Middleware
+// CORS configuration so your frontend can communicate with your backend
 app.use(cors({
     origin: '*',
     methods: ['GET', 'POST']
 }));
 app.use(express.json());
 
-// Cloud Database Connection (Aiven MySQL)
+// Database Connection (Configured for Aiven Cloud MySQL with SSL)
 const db = mysql.createConnection({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
@@ -29,9 +29,9 @@ db.connect((err) => {
         console.error('Database connection failed:', err);
         return;
     }
-    console.log('Connected to Cloud MySQL Database.');
+    console.log('Connected to Aiven MySQL Database.');
 
-    // Automatically create the students table if it doesn't exist
+    // Automatically ensure the students table exists
     const createTableQuery = `
         CREATE TABLE IF NOT EXISTS students (
             id INT AUTO_INCREMENT PRIMARY KEY,
@@ -49,12 +49,12 @@ db.connect((err) => {
         if (tableErr) {
             console.error('Error creating table:', tableErr);
         } else {
-            console.log('Students table is ready in the cloud database.');
+            console.log('Students table is ready.');
         }
     });
 });
 
-// API Endpoint to handle registration and save to cloud database
+// Registration Endpoint
 app.post('/api/register', (req, res) => {
     const { full_name, dob, mobile, city, father_name, mother_name, gender } = req.body;
 
@@ -69,8 +69,7 @@ app.post('/api/register', (req, res) => {
     });
 });
 
-// Start Server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-    console.log(`Backend server running on port ${PORT}`);
+    console.log(`Server running on port ${PORT}`);
 });
